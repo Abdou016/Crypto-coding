@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Encryptor/Decryptor</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .container { display: flex; flex-direction: column; gap: 20px; }
+        textarea { width: 100%; height: 100px; }
+        .controls { display: flex; flex-wrap: wrap; gap: 10px; }
+        button { padding: 8px 16px; cursor: pointer; }
+        .result { margin-top: 20px; padding: 10px; border: 1px solid #ddd; }
+        select, input { padding: 8px; }
+    </style>
+</head>
+<body>
+    <h1>Text Encryptor/Decryptor</h1>
+    <div class="container">
+        <textarea id="inputText" placeholder="Enter text here..."></textarea>
+        
+        <div class="controls">
+            <select id="algorithm">
+                <option value="caesar">Caesar Cipher</option>
+                <option value="vigenere">Vigenère Cipher</option>
+                <option value="playfair">Playfair Cipher</option>
+                <option value="railfence">Rail Fence Cipher</option>
+                <option value="rc4">RC4</option>
+                <option value="aes">AES</option>
+                <option value="des">DES</option>
+                <option value="rsa">RSA</option>
+                <option value="diffiehellman">Diffie-Hellman</option>
+                <option value="hash">Hash Function</option>
+            </select>
+            
+            <input type="text" id="keyInput" placeholder="Enter key">
+            
+            <select id="hashAlgorithm" style="display:none;">
+                <option value="md5">MD5</option>
+                <option value="sha1">SHA-1</option>
+                <option value="sha256">SHA-256</option>
+            </select>
+            
+            <button id="encryptBtn">Encrypt</button>
+            <button id="decryptBtn">Decrypt</button>
+            <button id="hashBtn" style="display:none;">Hash</button>
+        </div>
+        
+        <div class="result" id="result"></div>
+    </div>
+    
+    <script src="crypto.js"></script>
+    <link rel="stylesheet" href="crypto.css">
+    <div class="tab active" data-tab="encrypt">Encrypt</div>
+    <div class="tab" data-tab="decrypt">Decrypt</div>
+    <div class="tab" data-tab="hash">Hash</div>
+</body>
+</html>
