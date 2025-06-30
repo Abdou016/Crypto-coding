@@ -200,17 +200,3 @@ do {
         default { Write-Host "Invalid selection" -ForegroundColor Red }
     }
 } while ($true)
-# in addition:
-# In MyCryptoTool.psm1
-Export-ModuleMember -Function Invoke-*Cipher, Get-TextHash
-
-function Hide-TextInText {
-    param([string]$VisibleText, [string]$HiddenText)
-    # Uses zero-width Unicode characters to hide data
-    $HiddenBytes = [System.Text.Encoding]::UTF8.GetBytes($HiddenText)
-    $Binary = -join ($HiddenBytes | ForEach-Object { [Convert]::ToString($_, 2).PadLeft(8, '0') })
-    $ZeroWidth = foreach ($bit in $Binary.ToCharArray()) {
-        if ($bit -eq '0') { [char]0x200B } else { [char]0x200C }
-    }
-    $VisibleText + $ZeroWidth
-}
